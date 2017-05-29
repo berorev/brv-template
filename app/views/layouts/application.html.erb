@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B Template</title>
+    <%= csrf_meta_tags %>
+
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body class="hold-transition skin-red layout-boxed sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <%= render 'layouts/header' %>
+      </header>
+      
+      <aside class="main-sidebar">
+        <%= render 'layouts/sidebar' %>
+      </aside>
+      
+      <div class="content-wrapper">
+        <% if content_for?(:content_header) %>
+          <section class="content-header">
+            <%= yield(:content_header) %>
+          </section>
+        <% end %>
+        <section class="content">
+          <% flash.each do |name, msg| %>
+            <div class="alert alert-info alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= msg %>
+            </div>
+          <% end %>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </section>
+      </div>
+  
+      <footer class="main-footer">
+        <%= render 'layouts/footer' %>
+      </footer>
+    </div>
+  </body>
+</html>

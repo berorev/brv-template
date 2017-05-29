@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B Template</title>
+    <%= csrf_meta_tags %>
+
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body class="hold-transition login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="/"><b>B</b>Template</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <% flash.each do |type, msg| %>
+          <div class="alert <%= bootstrap_alert_class_for(type) %> alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= msg %>
+          </div>
+        <% end %>
+        <%#<p class="login-box-msg">Sign in</p>%>
+
+        <!-- <form action="/login" method="post"> -->
+        <%= form_for(:session, url: signin_path) do |f| %>
+          <input type="hidden" name="session[redirect_url]" value="<%=request.query_parameters['redirect_url']%>">
+          <div class="form-group has-feedback">
+            <input type="email" name="session[email]" class="form-control" placeholder="Email" autocomplete="off" autofocus>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" name="session[password]" class="form-control" placeholder="Password" autocomplete="off">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div>
+          </div>
+        <!-- </form> -->
+        <% end %>
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+  </body>
+</html>

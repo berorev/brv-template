@@ -1,0 +1,50 @@
+<% content_for(:content_header) do %>
+  <h1>User Management</h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/users">User Management</a></li>
+  </ol>
+<% end %>
+
+<div id="users" class="box">
+  <div class="box-header">
+    <h3 class="box-title">User List</h3>
+  </div>
+  <div class="box-body">
+    <table class="table">
+      <colgroup>
+        <col style="width: 30%">
+        <col>
+        <col style="width: 130px">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <template v-for="user in users">
+          <tr>
+            <td>{{ user.email }}</td>
+            <td>{{ user.name }}</td>
+            <td>
+              <!-- <div class="btn-group"> -->
+                <a v-bind:href="user.url" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+              <!-- </div> -->
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+
+  </div>
+</div>
