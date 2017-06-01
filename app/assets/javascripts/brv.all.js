@@ -358,4 +358,18 @@ window.brv = window.brv || {};
     };
   })();
 
+  brv.Vue = (function() {
+    var create = function(el, options) {
+      if ($(el).length > 0) {
+        return new Vue($.extend({ el: el }, options));
+      } else {
+        return null;
+      }
+    };
+
+    return {
+      create: create
+    };
+  })();
+
 })(window.brv);

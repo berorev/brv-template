@@ -17,5 +17,8 @@ module Fkp
     config.generators do |g|
       g.stylesheets false
     end
+
+    # https://stackoverflow.com/questions/16744279/rails-development-server-is-slow-and-takes-a-long-time-to-load-a-simple-page
+    config.assets.enabled = false
   end
 end

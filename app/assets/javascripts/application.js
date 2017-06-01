@@ -17,6 +17,7 @@
 //= require datatables-1.10.13/js/dataTables.bootstrap.js
 //= require adminlte-2.3.11/js/app.js
 //= require vue-2.3.2.min.js
+//= require axios-0.16.1.min.js
 // require angular-1.6.2/angular.js
 // require angular-1.6.2/angular-resource.js
 // require angular-1.6.2/angular-route.js
@@ -31,3 +32,7 @@ $.ajaxSetup({
   }
 });
 */
+
+axios.defaults.headers.common['X-CSRF-Token'] = $('meta[name="csrf-token"]').attr('content')
+
+Vue.prototype.$http = axios;
