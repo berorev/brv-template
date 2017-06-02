@@ -12,7 +12,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="hold-transition skin-red layout-boxed sidebar-mini">
+  <body class="hold-transition skin-red layout-boxed sidebar-mini" data-controller="<%=params[:controller]%>">
     <div class="wrapper">
       <header class="main-header">
         <%= render 'layouts/header' %>

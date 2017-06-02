@@ -50,7 +50,9 @@ window.brv = window.brv || {};
       if (url.endsWith('/')) {
         url = url.slice(0, -1);
       }
-      url = urlReplacer(url, request);
+      if (request.pathVariables) {
+        url = urlReplacer(url, request.pathVariables);
+      }
       
       var settings = {
         type: method,
@@ -357,7 +359,7 @@ window.brv = window.brv || {};
       disableSubmit: disableSubmit
     };
   })();
-
+  /*
   brv.Vue = (function() {
     var create = function(el, options) {
       if ($(el).length > 0) {
@@ -371,5 +373,18 @@ window.brv = window.brv || {};
       create: create
     };
   })();
-
+  */
+  brv.Page = (function() {
+    var initialize = function(controllerName, fnInit) {
+      $(function() {
+        var $controller = $('[data-controller="'+controllerName+'"]');
+        if ($controller.length > 0) {
+          fnInit();
+        }
+      });
+    };
+    return {
+      initialize: initialize
+    };
+  })();
 })(window.brv);
