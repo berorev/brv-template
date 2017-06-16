@@ -18,7 +18,11 @@ module Fkp
       g.stylesheets false
     end
 
-    # https://stackoverflow.com/questions/16744279/rails-development-server-is-slow-and-takes-a-long-time-to-load-a-simple-page
-    config.assets.enabled = false
+    Typescript::Rails::Compiler.default_options = %w(--target ES5 --noImplicitAny --module commonjs)
+
+    config.app_generators.javascript_engine :typescript
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
   end
 end
